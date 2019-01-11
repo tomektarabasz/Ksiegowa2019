@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using UsingOCR;
 
 namespace Ksiegowa2019.FileSearching
 {
@@ -57,14 +56,6 @@ namespace Ksiegowa2019.FileSearching
             Console.WriteLine(path);
             Console.WriteLine(tom);
         }
-        public void pomoc2()
-        {
-            
-            string[] paths = { pathToSkany+ @"\CCF20190107_00000.jpg" };
-             
-            FileToOCR fileToOCR = new FileToOCR();
-            fileToOCR.DoOCR(paths);
-        }
-
+       
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using Ksiegowa2019.FileSearching;
-using UsingOCR;
+using Ksiegowa2019.windowsUserSimulation;
+
+
 
 namespace Ksiegowa2019
 {
@@ -11,6 +13,7 @@ namespace Ksiegowa2019
             Console.WriteLine("Hello World!");
             DataGrabing dataGrabing = new DataGrabing();
             dataGrabing.TakeData();
+            
             
             Console.ReadKey();
         }
