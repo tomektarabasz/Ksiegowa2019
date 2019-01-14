@@ -15,7 +15,7 @@ namespace Ksiegowa2019
             dataGrabing.TakeData();
             
             
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }
