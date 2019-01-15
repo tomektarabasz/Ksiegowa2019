@@ -28,7 +28,7 @@ namespace Ksiegowa2019.ImportFileCreating
             "KONTRAHENT-KOD POCZTOWY = 20 - 345\r\n" +
             "KONTRAHENT-NIP=849-398-21-32";        
 
-        public string createOneDocument(List<Faktura> faktury)
+        public static string createOneDocument(List<Faktura> faktury)
         {
             int i = 0;
             List<string> stringList = new List<string>();
@@ -89,7 +89,7 @@ namespace Ksiegowa2019.ImportFileCreating
             Console.WriteLine(createDocument);
             return createDocument;
         }
-        public string nrKontaPrzyKupSprzedaz(Faktura faktura)
+        public static string nrKontaPrzyKupSprzedaz(Faktura faktura)
         {
             if (faktura.kupnoSprzedaz=="sprzedaz")
             {
@@ -100,7 +100,7 @@ namespace Ksiegowa2019.ImportFileCreating
                 return "8";
             }            
         }
-        public string nettoKwota(Faktura faktura)
+        public static string nettoKwota(Faktura faktura)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace Ksiegowa2019.ImportFileCreating
             }
             return "";
         }
-        public string podatekVat(Faktura faktura)
+        public static string podatekVat(Faktura faktura)
         {
             try
             {

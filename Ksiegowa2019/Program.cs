@@ -22,6 +22,7 @@ namespace Ksiegowa2019
             ImportFile importFile = new ImportFile();
 
             ImportFile.createImportFile(importFile.inputFileText2,new Faktura());
+            ImportFile.createOneDocument(faktury);
             
             //Console.ReadKey();
         }
