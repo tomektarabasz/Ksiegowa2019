@@ -26,9 +26,7 @@ namespace Ksiegowa2019.ImportFileCreating
             "KONTRAHENT-ULICA=Kwiatowa 8/10\r\n" +
             "KONTRAHENT-MIEJSCOWOSC=Stokrotka\r\n" +
             "KONTRAHENT-KOD POCZTOWY = 20 - 345\r\n" +
-            "KONTRAHENT-NIP=849-398-21-32";
-
-        
+            "KONTRAHENT-NIP=849-398-21-32";        
 
         public string createOneDocument(List<Faktura> faktury)
         {
@@ -83,7 +81,13 @@ namespace Ksiegowa2019.ImportFileCreating
             {
                 createDocument = createDocument + str;
             }
-            return "";
+            
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            StreamWriter streamWriter = new System.IO.StreamWriter(path, false, Encoding.GetEncoding("windows-1250"));
+            streamWriter.Write(createDocument);
+            streamWriter.Close();
+            Console.WriteLine(createDocument);
+            return createDocument;
         }
         public string nrKontaPrzyKupSprzedaz(Faktura faktura)
         {
