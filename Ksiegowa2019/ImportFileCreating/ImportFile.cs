@@ -28,6 +28,90 @@ namespace Ksiegowa2019.ImportFileCreating
             "KONTRAHENT-KOD POCZTOWY = 20 - 345\r\n" +
             "KONTRAHENT-NIP=849-398-21-32";
 
+        
+
+        public string createOneDocument(List<Faktura> faktury)
+        {
+            int i = 0;
+            foreach (Faktura faktura in faktury)
+            {
+                List<string> parametry = new List<string>();
+                parametry.Add(i.ToString());
+                parametry.Add("Dokument księgowy");
+                parametry.Add(faktura.nazwaKontrahenta);
+                parametry.Add(faktura.numer);
+                parametry.Add(faktura.date.ToString());
+                parametry.Add("Opis");
+                parametry.Add("1");//Rejest Vat sprawdz
+                parametry.Add(nrKontaPrzyKupSprzedaz(faktura));
+                parametry.Add();
+                parametry.Add();
+                parametry.Add(faktura.wartosc);
+
+                string inputFileText = "[Dokument {0}]\r\n" +
+                "TYP={1}\r\n" +
+                "KONTRAHENT={2}\r\n" +
+                "NUMER DOKUMENTU={3}r\n" +
+                "DATA={4}\r\n" +
+                "OPIS={5}\r\n" +
+                "REJESTR={6}\r\n" +
+                "KOLUMNA={7}\r\n" +
+                "NETTO-23={8}\r\n" +
+                "VAT-23=23\r\n" +
+                "KWOTA={9}\r\n" +
+                "KOREKTA={10}\r\n" +
+                "DATA OTRZYMANIA={11}\r\n" +
+                "KONTRAHENT-NAZWA PELNA = {12}\r\n" +
+                "KONTRAHENT-ULICA={13}\r\n" +
+                "KONTRAHENT-MIEJSCOWOSC={14}\r\n" +
+                "KONTRAHENT-KOD POCZTOWY = {15}\r\n" +
+                "KONTRAHENT-NIP={16}";
+                var iolo=String.Format(inputFileText,parametry);
+                i++;
+            }               
+            return "";
+        }
+        public string nrKontaPrzyKupSprzedaz(Faktura faktura)
+        {
+            if (faktura.kupnoSprzedaz=="sprzedaz")
+            {
+                return "7";
+            }
+            else
+            {
+                return "8";
+            }            
+        }
+        public string nettoKwota(Faktura faktura)
+        {
+            try
+            {
+                double wartosc=Convert.ToDouble(faktura.wartosc);
+                double wartoscNetto = wartosc / 1.23;
+                return wartoscNetto.ToString();
+            }
+            catch
+            {
+
+
+            }
+            return "";
+        }
+        public string podatekVat(Faktura faktura)
+        {
+            try
+            {
+                double wartosc = Convert.ToDouble(faktura.wartosc);
+                double wartoscPodatku = wartosc / 1.23 * 0.23;
+                return wartoscPodatku.ToString();
+            }
+            catch
+            {
+            }
+
+            return "";
+        }
+
         public static void createImportFile(string txt,Faktura faktura)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);            
