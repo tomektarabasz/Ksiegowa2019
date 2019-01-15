@@ -33,6 +33,8 @@ namespace Ksiegowa2019.ImportFileCreating
         public string createOneDocument(List<Faktura> faktury)
         {
             int i = 0;
+            List<string> stringList = new List<string>();
+            string createDocument="";
             foreach (Faktura faktura in faktury)
             {
                 List<string> parametry = new List<string>();
@@ -44,9 +46,17 @@ namespace Ksiegowa2019.ImportFileCreating
                 parametry.Add("Opis");
                 parametry.Add("1");//Rejest Vat sprawdz
                 parametry.Add(nrKontaPrzyKupSprzedaz(faktura));
-                parametry.Add();
-                parametry.Add();
+                parametry.Add(nettoKwota(faktura));
+                parametry.Add(podatekVat(faktura));
                 parametry.Add(faktura.wartosc);
+                parametry.Add(faktura.korekta);
+                parametry.Add("");
+                parametry.Add("");
+                parametry.Add("");
+                parametry.Add("");
+                parametry.Add("");
+                parametry.Add(faktura.nipKontrahenta);
+
 
                 string inputFileText = "[Dokument {0}]\r\n" +
                 "TYP={1}\r\n" +
@@ -65,10 +75,14 @@ namespace Ksiegowa2019.ImportFileCreating
                 "KONTRAHENT-ULICA={13}\r\n" +
                 "KONTRAHENT-MIEJSCOWOSC={14}\r\n" +
                 "KONTRAHENT-KOD POCZTOWY = {15}\r\n" +
-                "KONTRAHENT-NIP={16}";
-                var iolo=String.Format(inputFileText,parametry);
+                "KONTRAHENT-NIP={16}\r\n";
+                stringList.Add(String.Format(inputFileText,parametry));
                 i++;
-            }               
+            }
+            foreach (string str in stringList)
+            {
+                createDocument = createDocument + str;
+            }
             return "";
         }
         public string nrKontaPrzyKupSprzedaz(Faktura faktura)
@@ -111,7 +125,6 @@ namespace Ksiegowa2019.ImportFileCreating
 
             return "";
         }
-
         public static void createImportFile(string txt,Faktura faktura)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);            

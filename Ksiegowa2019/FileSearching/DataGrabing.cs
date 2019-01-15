@@ -15,6 +15,7 @@ namespace Ksiegowa2019.FileSearching
         public string nazwaKontrahenta { get; set; }
         public string nipKontrahenta { get; set; }
         public string kupnoSprzedaz { get; set; }
+        public string korekta { get; set; }
     }
     class DataGrabing
     {
