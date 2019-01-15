@@ -8,7 +8,7 @@ namespace Ksiegowa2019.ImportFileCreating
 {
     class ImportFile
     {
-        public const string path = @"C:\Księgowa2019\Text\uuuuu.ini";
+        public const string path = @"C:\Księgowa2019\Text\DokumentDoImportu.ini";
         public string inputFileText2 = "[Dokument 1]\r\n" +
             "TYP=Dokument księgowy\r\n" +
             "KONTRAHENT=Odbiorca\r\n" +
